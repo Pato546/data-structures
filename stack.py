@@ -1,7 +1,5 @@
 class ArrayStack:
-    """This is an array implementation of a **stack** datastructure
-    which uses the Adapter Design Pattern.
-    """
+    """This is an array implementation of a **stack** datastructure"""
 
     def __init__(self):
         self._data = []
@@ -20,6 +18,8 @@ class ArrayStack:
 
 
 class LinkedStack:
+    """This is a linked list implementation of a **stack** datastructure"""
+
     class Node:
         __slots__ = "element", "next"
 
@@ -38,7 +38,7 @@ class LinkedStack:
             try:
                 if self.head is None:
                     raise StopIteration
-                return self.head
+                return self.head.element
             finally:
                 try:
                     self.head = self.head.next
@@ -48,6 +48,9 @@ class LinkedStack:
     def __init__(self) -> None:
         self.head = None
         self.size = 0
+
+    def __len__(self):
+        return self.size
 
     def __iter__(self):
         return self.linked_stack_iterator(self)
@@ -68,43 +71,33 @@ class LinkedStack:
         self.head = self.head.next
         self.size -= 1
 
-        return head
-
-
-l = LinkedStack()
-l.push(1)
-l.push(2)
-l.push(3)
-l.pop()
-l.pop()
-l.pop()
-
-for i in l:
-    print(i.element)
-
-exit()
-
-
-def match_expr(expr: str) -> True:
-    left = {"{": 0, "(": 1, "[": 2}
-    right = {"}": 0, ")": 1, "]": 2}
-
-    arr = ArrayStack()
-
-    for delimeter in expr:
-        if delimeter in left:
-            arr.push(delimeter)
-        elif delimeter in right:
-            if len(arr):
-                if left.get(arr.pop()) == right.get(delimeter):
-                    continue
-                else:
-                    return False
-            else:
-                return False
-
-    return True
+        return head.element
 
 
 if __name__ == "__main__":
+
+    def match_expr(expr: str) -> True:
+        """This function checks if parenthesis matches in an expression"""
+
+        left = {"{": 0, "(": 1, "[": 2}
+        right = {"}": 0, ")": 1, "]": 2}
+
+        arr = LinkedStack()
+
+        for delimeter in expr:
+            if delimeter in left:
+                arr.push(delimeter)
+            elif delimeter in right:
+                if len(arr):
+                    if left.get(arr.pop()) == right.get(delimeter):
+                        continue
+                    else:
+                        return False
+                else:
+                    return False
+
+        return True
+
     print(match_expr("{(((({{{{}}}}))))}"))
+
+  
