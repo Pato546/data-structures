@@ -75,6 +75,8 @@ class LinkedStack:
 
 
 if __name__ == "__main__":
+    
+    # An example application of stacks
 
     def match_expr(expr: str) -> True:
         """This function checks if parenthesis matches in an expression"""
@@ -82,7 +84,7 @@ if __name__ == "__main__":
         left = {"{": 0, "(": 1, "[": 2}
         right = {"}": 0, ")": 1, "]": 2}
 
-        arr = LinkedStack()
+        arr = LinkedStack() # you can equally use ArrayStack()
 
         for delimeter in expr:
             if delimeter in left:
