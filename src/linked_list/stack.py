@@ -72,34 +72,3 @@ class LinkedStack:
         self.size -= 1
 
         return head.element
-
-
-if __name__ == "__main__":
-    
-    # An example application of stacks
-
-    def match_expr(expr: str) -> True:
-        """This function checks if parenthesis matches in an expression"""
-
-        left = {"{": 0, "(": 1, "[": 2}
-        right = {"}": 0, ")": 1, "]": 2}
-
-        arr = LinkedStack() # you can equally use ArrayStack()
-
-        for delimeter in expr:
-            if delimeter in left:
-                arr.push(delimeter)
-            elif delimeter in right:
-                if len(arr):
-                    if left.get(arr.pop()) == right.get(delimeter):
-                        continue
-                    else:
-                        return False
-                else:
-                    return False
-
-        return True
-
-    print(match_expr("{(((({{{{}}}}))))}"))
-
-  
