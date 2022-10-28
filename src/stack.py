@@ -1,27 +1,24 @@
-from collections import deque
-
-
-class DequeQueue:
-    """This is a implementation of a **queue** datastructure"""
+class ArrayStack:
+    """This is an array implementation of a **stack** datastructure"""
 
     def __init__(self):
-        self._data = deque()
+        self._data = []
 
     def __len__(self):
         return len(self._data)
 
     def __iter__(self):
-        return iter(self._data)
+        return reversed(self._data)
 
-    def enqueue(self, el):
+    def push(self, el):
         self._data.append(el)
 
-    def dequeue(self):
-        return self._data.popleft()
+    def pop(self):
+        return self._data.pop(-1)
 
 
-class LinkedQueue:
-    """This is a linked list implementation of a **queue** datastructure"""
+class LinkedStack:
+    """This is a linked list implementation of a **stack** datastructure"""
 
     class Node:
         __slots__ = "element", "next"
@@ -30,9 +27,7 @@ class LinkedQueue:
             self.element = elem
             self.next = next_
 
-
-    class linked_queue_iterator:
-        
+    class linked_stack_iterator:
         def __init__(self, __o) -> None:
             self.head = __o.head
 
@@ -50,55 +45,30 @@ class LinkedQueue:
                 except AttributeError:
                     raise StopIteration
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
-        self.tail = None
         self.size = 0
 
-    def __len__(self) -> int:
+    def __len__(self):
         return self.size
 
     def __iter__(self):
-        return self.linked_queue_iterator(self)
+        return self.linked_stack_iterator(self)
 
-    def enqueue(self, el):
-        node = self.Node(el, None)
-
+    def push(self, elem):
         if self.size == 0:
-            self.tail = node
-            self.head = node
-
+            self.head = self.Node(elem=elem, next_=None)
         else:
-            self.tail.next = node
-            self.tail = node
+            node = self.Node(elem=elem, next_=self.head)
+            self.head = node
 
         self.size += 1
 
-    def dequeue(self):
+    def pop(self):
         if self.size == 0:
             return
-
         head = self.head
-
-        if self.size == 1:
-            self.head = self.head.next
-            self.tail = self.head
-
-        else:
-            self.head = self.head.next
-
+        self.head = self.head.next
         self.size -= 1
 
         return head.element
-
-
-if __name__ == "__main__":
-
-    dq = LinkedQueue()
-
-    dq.enqueue(1)
-    dq.enqueue(2)
-    dq.enqueue(3)
-
-    for e in dq:
-        print(e)
