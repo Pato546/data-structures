@@ -31,42 +31,42 @@ implemented. The stack datastructure support **two(2)** fundamental operations:
 
 1. Reversing of data in a collection.
 
-#### Example (Parenthesis mathing in an expression)
+<!-- #### Example (Parenthesis mathing in an expression) -->
 
-```python
-from linked_list.stack import LinkedStack, ArrayStack
+<!-- ```python -->
+<!-- from linked_list.stack import LinkedStack, ArrayStack -->
 
-def match_parenthesis(expr: str) -> bool:
-  """Checks if parenthesis matches in an expression
+<!-- def match_parenthesis(expr: str) -> bool: -->
+<!--   """Checks if parenthesis matches in an expression -->
 
-  Args:
-    expr (str): expression to check.
+<!--   Args: -->
+<!--     expr (str): expression to check. -->
 
-  Returns:
-    bool: `True` if parenthesis matches and `False` if not.
+<!--   Returns: -->
+<!--     bool: `True` if parenthesis matches and `False` if not. -->
 
-  """
+<!--   """ -->
 
-  left: dict = {"{": 0, "(": 1, "[": 2}
-  right: dict = {"}": 0, ")": 1, "]": 2}
+<!--   left: dict = {"{": 0, "(": 1, "[": 2} -->
+<!--   right: dict = {"}": 0, ")": 1, "]": 2} -->
 
-  stack = LinkedStack() # you can equally use ArrayStack()
+<!--   stack = LinkedStack() # you can equally use ArrayStack() -->
 
-  for delimeter in expr:
-    if delimeter in left:
-      stack.push(delimeter)
-    elif delimeter in right:
-      if len(stack):
-        if left.get(stack.pop()) == right.get(delimeter):
-          continue
-        else:
-          return False
+<!--   for delimeter in expr: -->
+<!--     if delimeter in left: -->
+<!--       stack.push(delimeter) -->
+<!--     elif delimeter in right: -->
+<!--       if len(stack): -->
+<!--         if left.get(stack.pop()) == right.get(delimeter): -->
+<!--           continue -->
+<!--         else: -->
+<!--           return False -->
 
-      else:
-        return False
+<!--       else: -->
+<!--         return False -->
 
-  return True
+<!--   return True -->
 
-```
+<!-- ``` -->
 
 </details>
